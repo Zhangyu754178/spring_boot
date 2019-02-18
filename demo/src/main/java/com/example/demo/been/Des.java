@@ -1,9 +1,8 @@
 package com.example.demo.been;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,9 +19,17 @@ public class Des implements  Serializable{
     @Column(nullable = false, unique = true)
     public String des;
 
-    public List<UseLike> useLikes;
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
 
-    public List<Comment> comments;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -52,19 +59,5 @@ public class Des implements  Serializable{
         this.des = des;
     }
 
-    public List<UseLike> getUseLikes() {
-        return useLikes;
-    }
 
-    public void setUseLikes(List<UseLike> useLikes) {
-        this.useLikes = useLikes;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }

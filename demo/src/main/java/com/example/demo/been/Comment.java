@@ -1,21 +1,32 @@
 package com.example.demo.been;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
-//@Entity
+@Entity
 public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
-    //@Id
-    //@GeneratedValue
+    @Id
+    @GeneratedValue
     public long id;
-   // @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     public int useid;
-    //@Column(nullable = false)
+    @Column(nullable = false)
     public String usedDes;
+
+//    @JsonIgnore
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "comment")
+//    private Des des;
+
+//    public Des getDes() {
+//        return des;
+//    }
+//
+//    public void setDes(Des des) {
+//        this.des = des;
+//    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
