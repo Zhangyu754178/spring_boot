@@ -14,7 +14,7 @@ public class Des implements  Serializable{
     public long id;
 
     @Column(nullable = false, unique = true)
-    public int userId;
+    public long userId;
 
     @Column(nullable = false, unique = true)
     public String des;
@@ -43,7 +43,7 @@ public class Des implements  Serializable{
         this.id = id;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 

@@ -29,7 +29,7 @@ public class DbController {
 
 
     @GetMapping(value = "/person/all")
-    private List<User> personList() {
+    public List<User> personList() {
         return userRepository.findAll();
     }
 

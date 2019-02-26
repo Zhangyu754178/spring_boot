@@ -15,9 +15,10 @@ public class DesController {
 
     @Autowired
     private DesRepository desRepository;
-
+    @Autowired
+    private UserRepository userRepository;
     @GetMapping(value = "/des/all")
-    private List<Des> personList() {
+    private List<Des> DesList() {
         return desRepository.findAll();
     }
 
@@ -26,12 +27,13 @@ public class DesController {
     public Des personAdd(@RequestParam("userId") int userId,
                           @RequestParam("des") String des
                          ) {
-        Date date = new Date();
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
-        String formattedDate = dateFormat.format(date);
         Des desbeen =new Des();
         desbeen.setUserId(userId);
         desbeen.setDes(des);
+        for (User item: userRepository.findAll()) {
+            if(item.getId()==userId)
+                desbeen.setUser(item);
+        }
         return desRepository.save(desbeen);
     }
     /**
